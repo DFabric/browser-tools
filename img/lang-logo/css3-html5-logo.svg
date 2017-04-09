@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="512" width="791.31" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata7">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(-170.06 -270.18)">
+  <g id="g3013" transform="translate(95.429 270.18)">
+   <polygon id="polygon2989" points="255.78 512 107.64 470.88 74.633 100.62 437.37 100.62 404.32 470.82" fill="#264de4"/>
+   <polygon id="polygon2991" points="376.03 447.25 404.27 130.89 256 130.89 256 480.52" fill="#2965f1"/>
+   <g fill="#ebebeb">
+    <polygon id="polygon2993" points="150.31 268.22 154.38 313.63 256 313.63 256 268.22"/>
+    <polygon id="polygon2995" points="142.13 176.3 146.26 221.72 256 221.72 256 176.3 255.84 176.3"/>
+    <polygon id="polygon2997" points="256 386.15 255.8 386.21 205.23 372.55 201.99 336.33 177.42 336.33 156.41 336.33 162.77 407.63 255.79 433.46 256 433.4"/>
+   </g>
+   <path id="path2999" d="m160 0h55v23h-32v23h32v23h-55z"/>
+   <path id="path3001" d="m226 0h55v20h-32v4h32v46h-55v-21h32v-4h-32z"/>
+   <path id="path3003" d="m292 0h55v20h-32v4h32v46h-55v-21h32v-4h-32z"/>
+   <polygon id="polygon3005" points="361.4 268.22 369.6 176.3 255.84 176.3 255.84 221.72 319.83 221.72 315.7 268.22 255.84 268.22 255.84 313.63 311.76 313.63 306.49 372.52 255.84 386.19 255.84 433.44 348.94 407.63 349.62 399.96 360.29 280.41" fill="#fff"/>
+  </g>
+  <g id="g3054" transform="translate(524 270.18)">
+   <polygon id="polygon3028" points="437.37 100.62 404.32 470.82 255.78 512 107.64 470.88 74.633 100.62" fill="#e44d26"/>
+   <polygon id="polygon3030" points="256 480.52 376.03 447.25 404.27 130.89 256 130.89" fill="#f16529"/>
+   <polygon id="polygon3032" points="191.76 221.72 256 221.72 256 176.3 255.84 176.3 142.13 176.3 143.22 188.49 154.38 313.63 256 313.63 256 268.22 195.91 268.22" fill="#ebebeb"/>
+   <polygon id="polygon3034" points="201.99 336.33 177.42 336.33 156.41 336.33 162.77 407.63 255.79 433.46 256 433.4 256 386.15 255.8 386.21 205.23 372.55" fill="#ebebeb"/>
+   <path id="path3036" d="m108.38 0h23.077v22.8h21.11v-22.8h23.078v69.044h-23.08v-23.12h-21.11v23.12h-23.08v-69.044z"/>
+   <path id="path3038" d="m205.99 22.896h-20.31v-22.896h63.72v22.896h-20.33v46.148h-23.07v-46.148z"/>
+   <path id="path3040" d="m259.51 0h24.063l14.81 24.26 14.78-24.26h24.072v69.044h-22.98v-34.222l-15.877 24.549h-0.397l-15.88-24.549v34.222h-22.58v-69.044z"/>
+   <path id="path3042" d="m348.72 0h23.084v46.222h32.453v22.822h-55.53v-69.044z"/>
+   <polygon id="polygon3044" points="255.84 313.63 311.76 313.63 306.49 372.52 255.84 386.19 255.84 433.44 348.94 407.63 349.62 399.96 360.29 280.41 361.4 268.22 349.16 268.22 255.84 268.22" fill="#fff"/>
+   <polygon id="polygon3046" points="255.84 221.6 255.84 221.72 365.38 221.72 365.38 221.72 365.53 221.72 366.44 211.51 368.51 188.49 369.6 176.3 255.84 176.3 255.84 204.51" fill="#fff"/>
+  </g>
+ </g>
+</svg>

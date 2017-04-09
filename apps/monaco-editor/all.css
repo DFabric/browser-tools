@@ -1,0 +1,79 @@
+body {
+  padding: 54px 0 40px 0;
+  overflow-y: scroll;
+}
+
+body.home {
+  padding-top: 0;
+}
+
+body,input,button,select {
+  font: 400 14px/1.4em "Segoe UI", "Open Sans", Calibri, Candara, Arial, sans-serif;
+}
+
+a {
+  color: #0066cc;
+  cursor: pointer;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: normal;
+}
+
+/***** Bootstrap Cosmo Overrides *****/
+
+h1,h2 {
+  font-family: "Segoe UI Light", "Segoe UI", "Open Sans", Calibri, Candara, Arial, sans-serif;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 72px;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+/***** General *****/
+
+body > section > .container {
+  padding-top: 12px;
+}
+
+/* Controls */
+
+/* Media Queries */
+
+@media (min-width: 1200px) {
+  h1,  h2 {
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  h1 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (max-width: 979px) {
+  body {
+    padding: inherit;
+  }
+}

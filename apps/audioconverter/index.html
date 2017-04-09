@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser-Tools - Audio converter</title>
+  <meta name="description" content="Convert your audio/video files to music without any installed programs or long files upload online in your browser">
+  <link rel="shortcut icon" href="../../img/music-logo.png">
+  <link href="../../style/main.css" rel="stylesheet">
+  <!-- Piwik -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://piwik-jros.rhcloud.com/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+  <!-- End Piwik Code -->
+</head>
+<body>
+  <a id="home" href="../../index.html">Home</a>
+    <div id="loading" class="audio-overlay"><div class="audio-overlay-inner1"><div class="audio-overlay-inner2 lead">
+      <b>Loading</b> <img src="../../img/loader.gif">
+    </div></div></div>
+      <h2><img src="../../img/music-logo.png" height="48px"> The audio converter</h2>
+      <p class="lead">Convert your audio files without any external programs or long files upload!</p>
+      <p class="lead">Select audio file for conversion (wav, mp3, ogg, aac, mp4, wma):</p>
+      <div><input id="inFile" id="inputFile" type="file" class="btn"></div>
+      <div><div id="drop" class="audio-drop-inner">Drop file here</div>
+      <div>
+        <p class="lead">Select output audio format:</p>
+        <div class="group1 btn-group" data-toggle="buttons">
+          <label class="btn active" name="formatBtn">
+            <input type="radio" name="format" value="mp3" checked>
+            MP3 </label>
+          <label class="btn" name="formatBtn">
+            <input type="radio" name="format" value="ogg">
+            Ogg </label>
+          <label class="btn" name="formatBtn"><input type="radio" name="format" value="aac">
+            AAC </label>
+          <label class="btn" name="formatBtn"><input type="radio" name="format" value="wma">
+            WMA </label>
+          </div>
+        </div>
+        <div>
+          <br>
+          <p class="lead">Select bitrate</p>
+          <div class="group2 btn-group" data-toggle="buttons">
+            <label class="btn" name="bitrateBtn">
+              <input type="radio" name="bitrate" value="32k">
+              32k </label>
+            <label class="btn" name="bitrateBtn">
+              <input type="radio" name="bitrate" value="96k">
+              96k </label>
+            <label class="btn" name="bitrateBtn">
+              <input type="radio" name="bitrate" value="128k">
+              128k </label>
+            <label class="btn" name="bitrateBtn">
+              <input type="radio" name="bitrate" value="192k">
+              192k </label>
+            <label class="btn active" name="bitrateBtn">
+              <input type="radio" name="bitrate" value="320k" checked>
+              320k </label>
+          </div>
+        </div>
+        <br>
+        <div>
+          <button id="convert" type="button" class="btn" disabled="true">Convert audio file</button>
+          <img id="converting" class="audio-hidden" src="../../img/loader.gif"> <b id="progress" class="audio-hidden"></b> <b id="error" class="audio-hidden">Error during conversion</b>
+        </div>
+        <div id="download" class="audio-hidden">
+          <p class="lead">Save converted <a id="downloadLink" class="lead">audio file</a></p>
+        </div>
+      </div>
+    <footer>
+      <a href="https://github.com/sopel39/audioconverter.js">About this project</a><br>
+      <a href="about.html" title="About" id="about">?</a>
+    </footer>
+    <script src="../../js/jquery.min.js"></script>
+    <script>
+    // Change active button on click
+    $(".group1 .btn").click(function(){
+      $(".group1 .btn").removeClass('active');
+      $(this).addClass('active');
+    });
+    $(".group2 .btn").click(function(){
+      $(".group2 .btn").removeClass('active');
+      $(this).addClass('active');
+    });
+
+    // input file params
+    var fileName;
+    var fileBuffer;
+
+    function timeToSeconds(time) {
+        var parts = time.split(":");
+        return parseFloat(parts[0]) * 60 * 60 + parseFloat(parts[1]) * 60 + parseFloat(parts[2]) + parseFloat("0." + parts[3]);
+    }
+
+    // create ffmpeg worker
+    function getFFMPEGWorker() {
+      // regexps for extracting time from ffmpeg logs
+        var durationRegexp = /Duration: (.*?), /
+        var timeRegexp = /time=(.*?) /;
+        var duration;
+
+        var ffmpegWorker = new Worker('js/worker.js');
+        var durationLine
+        ffmpegWorker.addEventListener('message', function(event) {
+            var message = event.data;
+            if (message.type === "ready" && window.File && window.FileList && window.FileReader) {
+        // script loaded, hide loader
+        $('#loading').hide();
+            } else if (message.type == "stdout") {
+              console.log(message.data);
+            } else if (message.type == "stderr") {
+              console.log(message.data);
+        // try to extract duration
+        if (durationRegexp.exec(message.data)) {
+            duration = timeToSeconds(durationRegexp.exec(message.data)[1]);
+        }
+        // try to extract time
+        if (timeRegexp.exec(message.data)) {
+            var time = timeToSeconds(timeRegexp.exec(message.data)[1]);
+            if (duration) {
+        $("#progress").text("Progress: " + Math.floor(time / duration * 100) + "%");
+                $("#progress").show();
+            }
+        }
+            } else if (message.type == "done") {
+        var code = message.data.code;
+        var outFileNames = Object.keys(message.data.outputFiles);
+        if (code == 0 && outFileNames.length) {
+            var outFileName = outFileNames[0];
+            var outFileBuffer = message.data.outputFiles[outFileName];
+            var src = window.URL.createObjectURL(new Blob([outFileBuffer]));
+            $("#downloadLink").attr('href', src);
+            $("#download").show();
+        } else {
+            $("#error").show();
+        }
+        $("#converting").hide();
+        $("#progress").hide();
+            }
+        }, false);
+        return ffmpegWorker;
+    }
+
+    // create ffmpeg worker
+    var ffmpegWorker = getFFMPEGWorker();
+    var ffmpegRunning = false;
+
+    $('#convert').click(function() {
+        // terminate existing worker
+        if (ffmpegRunning) {
+            ffmpegWorker.terminate();
+            ffmpegWorker = getFFMPEGWorker();
+        }
+        ffmpegRunning = true;
+
+        // display converting animation
+        $("#converting").show();
+        $("#error").hide();
+
+        // hide download div
+        $("#download").hide();
+
+        // change download file name
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+        var outFileName = fileName.substr(0, fileName.lastIndexOf('.')) + "." + getOutFormat();
+        $("#downloadLink").attr("download", outFileName);
+        $("#downloadLink").text(outFileName);
+
+        var arguments = [];
+        arguments.push("-i");
+        arguments.push(fileName);
+
+        arguments.push("-b:a");
+        arguments.push(getBitrate());
+
+        switch (getOutFormat()) {
+            case "mp3":
+        arguments.push("-acodec");
+        arguments.push("libmp3lame");
+        arguments.push("out.mp3");
+        break;
+
+            case "ogg":
+        arguments.push("-acodec");
+        arguments.push("libvorbis");
+        arguments.push("out.ogg");
+        break;
+
+            case "aac":
+        arguments.push("-acodec");
+        arguments.push("libfdk_aac");
+        arguments.push("out.mp4");
+        break;
+
+            case "wma":
+        arguments.push("-acodec");
+        arguments.push("wmav1");
+        arguments.push("out.asf");
+        break;
+        }
+
+        ffmpegWorker.postMessage({
+            type: "command",
+            arguments: arguments,
+            files: [
+        {
+            "name": fileName,
+            "buffer": fileBuffer
+        }
+            ]
+        });
+    });
+
+    function getOutFormat() {
+        return $('input[name=format]:checked').val();
+    }
+
+    function getBitrate() {
+        return $('input[name=bitrate]:checked').val();
+    }
+
+    // disable conversion at start
+    $('#convert').attr('disabled', 'true');
+
+    function readInputFile(file) {
+        // disable conversion for the time of file loading
+        $('#convert').attr('disabled', 'true');
+
+        // load file content
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#convert').removeAttr('disabled');
+            fileName = file.name;
+            fileBuffer = e.target.result;
+        }
+        reader.readAsArrayBuffer(file);
+    }
+
+    // reset file selector at start
+    function resetInputFile() {
+        $("#inFile").wrap('<form>').closest('form').get(0).reset();
+        $("#inFile").unwrap();
+    }
+    resetInputFile();
+
+    function handleFileSelect(event) {
+      var files = event.target.files; // FileList object
+        // files is a FileList of File objects. display first file name
+        file = files[0];
+        if (file) {
+            $("#drop").text("Selected file: " + file.name);
+            readInputFile(file);
+        }
+    }
+
+    // setup input file listeners
+    document.getElementById('inFile').addEventListener('change', handleFileSelect, false);
+
+    function handleDropSelect(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        var files = event.dataTransfer.files; // FileList object
+
+        // files is a FileList of File objects. display first file name
+        file = files[0];
+        if (file) {
+            $("#drop").text("Dropped file: " + file.name);
+            resetInputFile();
+            readInputFile(file);
+        }
+    }
+
+    function handleDragOver(event) {
+      event.stopPropagation();
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy'; // explicitly show this is a copy
+    }
+
+    // setup drop listeners.
+    var drop = document.getElementById('drop');
+    drop.addEventListener('dragover', handleDragOver, false);
+    drop.addEventListener('drop', handleDropSelect, false);
+    </script>
+  </body>
+</html>

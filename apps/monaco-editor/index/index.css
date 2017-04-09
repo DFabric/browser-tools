@@ -1,0 +1,63 @@
+.row-element {
+  display: inline-block;
+  margin: 1em;
+  text-align: left;
+}
+
+.editor-block {
+  margin: 2em;
+}
+
+.editor-frame {
+  text-align: left;
+}
+
+.try [class*="span"] {
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.try .editor.row .control-label {
+  display: inline-block;
+  position: relative;
+  top: -4px;
+  margin-right: 4px;
+}
+
+.try .editor .editor-frame {
+  position: relative;
+}
+
+.try .editor .editor-frame #editor,.try .editor .editor-frame #diff-editor {
+  height: 40em;
+  margin-bottom: 1em;
+  border: 1px solid #eee;
+}
+
+.try .editor .editor-frame .loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .5);
+  margin: 0 auto;
+  display: none;
+  z-index: 100;
+}
+
+.try .editor .editor-frame .progress {
+  width: 50%;
+  margin: 15% auto 0;
+}
+
+.try .editor .editor-frame .progress .bar {
+  width: 100%;
+  background: #4bb1cf;
+}
+
+.try .editor #editor .monaco-editor .row,.try .editor #diff-editor .monaco-editor .row {
+  margin-left: 0;
+}

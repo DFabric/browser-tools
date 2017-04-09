@@ -1,0 +1,244 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Browser-Tools - Convert PNG/JPEG image to text with the tesseract.js OCR</title>
+	<meta name="description" content="Convert PNG/JPEG image to text online in your browser with the tesseract.js OCR">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style/main.css">
+	<!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+	    var u="https://piwik-jros.rhcloud.com/";
+	    _paq.push(['setTrackerUrl', u+'piwik.php']);
+	    _paq.push(['setSiteId', '1']);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+	<!-- End Piwik Code -->
+</head>
+<body>
+	<a id="home" href="index.html">Home</a>
+	<div id="container">
+
+		<select id="langsel" class="btn" onchange="window.lastFile && recognizeFile(window.lastFile)">
+		<option value='afr'     > Afrikaans             </option>
+		<option value='ara'     > Arabic                </option>
+		<option value='aze'     > Azerbaijani           </option>
+		<option value='bel'     > Belarusian            </option>
+		<option value='ben'     > Bengali               </option>
+		<option value='bul'     > Bulgarian             </option>
+		<option value='cat'     > Catalan               </option>
+		<option value='ces'     > Czech                 </option>
+		<option value='chi_sim' > Chinese               </option>
+		<option value='chi_tra' > Traditional Chinese   </option>
+		<option value='chr'     > Cherokee              </option>
+		<option value='dan'     > Danish                </option>
+		<option value='deu'     > German                </option>
+		<option value='ell'     > Greek                 </option>
+		<option value='eng'     selected> English                </option>
+		<option value='enm'     > English (Old)         </option>
+		<option value='meme'    > Internet Meme        </option>
+		<option value='epo'     > Esperanto             </option>
+		<option value='epo_alt' > Esperanto alternative </option>
+		<option value='equ'     > Math                  </option>
+		<option value='est'     > Estonian              </option>
+		<option value='eus'     > Basque                </option>
+		<option value='fin'     > Finnish               </option>
+		<option value='fra'     > French                </option>
+		<option value='frk'     > Frankish              </option>
+		<option value='frm'     > French (Old)          </option>
+		<option value='glg'     > Galician              </option>
+		<option value='grc'     > Ancient Greek         </option>
+		<option value='heb'     > Hebrew                </option>
+		<option value='hin'     > Hindi                 </option>
+		<option value='hrv'     > Croatian              </option>
+		<option value='hun'     > Hungarian             </option>
+		<option value='ind'     > Indonesian            </option>
+		<option value='isl'     > Icelandic             </option>
+		<option value='ita'     > Italian               </option>
+		<option value='ita_old' > Italian (Old)         </option>
+		<option value='jpn'     > Japanese              </option>
+		<option value='kan'     > Kannada               </option>
+		<option value='kor'     > Korean                </option>
+		<option value='lav'     > Latvian               </option>
+		<option value='lit'     > Lithuanian            </option>
+		<option value='mal'     > Malayalam             </option>
+		<option value='mkd'     > Macedonian            </option>
+		<option value='mlt'     > Maltese               </option>
+		<option value='msa'     > Malay                 </option>
+		<option value='nld'     > Dutch                 </option>
+		<option value='nor'     > Norwegian             </option>
+		<option value='pol'     > Polish                </option>
+		<option value='por'     > Portuguese            </option>
+		<option value='ron'     > Romanian              </option>
+		<option value='rus'     > Russian               </option>
+		<option value='slk'     > Slovakian             </option>
+		<option value='slv'     > Slovenian             </option>
+		<option value='spa'     > Spanish               </option>
+		<option value='spa_old' > Old Spanish           </option>
+		<option value='sqi'     > Albanian              </option>
+		<option value='srp'     > Serbian (Latin)       </option>
+		<option value='swa'     > Swahili               </option>
+		<option value='swe'     > Swedish               </option>
+		<option value='tam'     > Tamil                 </option>
+		<option value='tel'     > Telugu                </option>
+		<option value='tgl'     > Tagalog               </option>
+		<option value='tha'     > Thai                  </option>
+		<option value='tur'     > Turkish               </option>
+		<option value='ukr'     > Ukrainian             </option>
+		<option value='vie'     > Vietnamese            </option>
+		</select>
+
+		<input class="btn" type="file" onchange="recognizeFile(window.lastFile=this.files[0])">
+
+		<button class="btn" data-clipboard-target="#transcription"><img class="mini-icon" src="img/clipboard-icon.svg">Copy to clipboard</button>
+
+		<input type="text" value="imagetext.txt">
+		<button class="btn" onclick="downloadFile()">Create file</button> <output></output>
+
+		<div id="log"></div>
+	</div>
+
+	<a href="http://tesseract.projectnaptha.com" title="tesseract.js">Tesseract.js project</a><br>
+	<a href="ocrad.html">See also ocrad.js, another more basic OCR</a>
+
+	<script src="js/tesseract/tesseract.js"></script>
+
+	<script>
+	function progressUpdate(packet){
+		var log = document.getElementById('log');
+
+		if(log.firstChild && log.firstChild.status === packet.status){
+			if('progress' in packet){
+				var progress = log.firstChild.querySelector('progress')
+				progress.value = packet.progress
+			}
+		}else{
+			var line = document.createElement('div');
+			line.status = packet.status;
+			var status = document.createElement('div')
+			status.className = 'status'
+			status.appendChild(document.createTextNode(packet.status))
+			line.appendChild(status)
+
+			if('progress' in packet){
+				var progress = document.createElement('progress')
+				progress.value = packet.progress
+				progress.max = 1
+				line.appendChild(progress)
+			}
+
+
+			if(packet.status == 'done'){
+				var pre = document.createElement('pre')
+				pre.setAttribute("id", "transcription")
+				pre.appendChild(document.createTextNode(packet.data.text))
+				line.innerHTML = ''
+				line.appendChild(pre)
+
+			}
+
+			log.insertBefore(line, log.firstChild)
+		}
+	}
+
+	function recognizeFile(file){
+		document.querySelector("#log").innerHTML = ''
+
+		Tesseract.recognize(file, {
+			lang: document.querySelector('#langsel').value
+		})
+			.progress(function(packet){
+				console.info(packet)
+				progressUpdate(packet)
+
+			})
+			.then(function(data){
+				console.log(data)
+				progressUpdate({ status: 'done', data: data })
+			})
+	}
+	</script>
+	<!-- text to file exporter -->
+	<script>
+	var container = document.querySelector('#container');
+	var typer = container.querySelector('#log');
+	var output = container.querySelector('output');
+
+	const MIME_TYPE = 'text/plain';
+
+	// Rockstars use event delegation!
+	document.body.addEventListener('dragstart', function(e) {
+	  var a = e.target;
+	  if (a.classList.contains('dragout')) {
+	    e.dataTransfer.setData('DownloadURL', a.dataset.downloadurl);
+	  }
+	}, false);
+
+	document.body.addEventListener('dragend', function(e) {
+	  var a = e.target;
+	  if (a.classList.contains('dragout')) {
+	    cleanUp(a);
+	  }
+	}, false);
+
+	document.addEventListener('keydown', function(e) {
+	  if (e.keyCode == 27) {  // Esc
+	    document.querySelector('details').open = false;
+	  } else if (e.shiftKey && e.keyCode == 191) { // shift + ?
+	    document.querySelector('details').open = true;
+	  }
+	}, false);
+
+	var cleanUp = function(a) {
+	  a.textContent = 'Downloaded';
+	  a.dataset.disabled = true;
+
+	  // Need a small delay for the revokeObjectURL to work properly.
+	  setTimeout(function() {
+	    window.URL.revokeObjectURL(a.href);
+	  }, 1500);
+	};
+
+	var downloadFile = function() {
+	  window.URL = window.webkitURL || window.URL;
+
+	  var prevLink = output.querySelector('a');
+	  if (prevLink) {
+	    window.URL.revokeObjectURL(prevLink.href);
+	    output.innerHTML = '';
+	  }
+
+	  var bb = new Blob([typer.textContent], {type: MIME_TYPE});
+
+	  var a = document.createElement('a');
+	  a.download = container.querySelector('input[type="text"]').value;
+	  a.href = window.URL.createObjectURL(bb);
+	  a.textContent = 'Download ready';
+
+	  a.dataset.downloadurl = [MIME_TYPE, a.download, a.href].join(':');
+	  a.draggable = true; // Don't really need, but good practice.
+	  a.classList.add('dragout');
+
+	  output.appendChild(a);
+
+	  a.onclick = function(e) {
+	    if ('disabled' in this.dataset) {
+	      return false;
+	    }
+
+	    cleanUp(this);
+	  };
+	};
+	</script>
+	<script src="js/clipboard.min.js"></script>
+	<script>new Clipboard('.btn')</script>
+</body>
+</html>

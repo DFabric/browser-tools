@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DoppioJVM: A JVM in JavaScript</title>
+    <meta name="description" content="DoppioJVM: a Java Virtual Machine in JavaScript, online in your browser">
+    <link rel="stylesheet" href="../../style/main.css">
+    <link rel="stylesheet" href="css/xterm.css">
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik-jros.rhcloud.com/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+    <!-- End Piwik Code -->
+  </head>
+  <body>
+    <a id="home" href="../../index.html">Home</a>
+    <div class="container">
+      <h1>DoppioJVM</h1>
+      <p>A Java Virtual Machine written in 100% JavaScript.<p>
+      <a class="btn" href="paper.pdf">Read the academic paper »</a>
+      <a class="btn" href="https://github.com/plasma-umass/doppio">Browse the code »</a>
+    </div>
+
+    <div>
+        <!-- File upload button strategy credit goes davist11: https://gist.github.com/645816 -->
+      <h2>Shell Demo</h2>
+      <span class="file-wrapper">
+        <input type="file" name="file" id="file" multiple>
+        <span class="btn">Upload Files...</span>
+      </span>
+      <div id="button-and-warning">
+        <p>Click the button to start the demo. <strong>The demo will immediately preload a 40MB file containing the Java Class Library.</strong></p>
+        <p class="text-center">
+          <button type="button" class="btn" id="demo_button">
+            <span aria-hidden="true"></span> Start the Demo
+          </button>
+          <button type="button" class="btn" id="clear-demo-button" style="display:none;">
+            <span aria-hidden="true"></span> Reset Demo
+          </button>
+        </p>
+        <p id="reset-status"></p>
+      </div>
+      <div class="row" id="progress-bar-container" style="display: none;">
+        <div class="alert alert-danger" role="alert" style="display: none;"></div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            <span>Connecting to server for download...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id='ide' style="display: none;">
+        <div id='source' style='height: 70%;'></div>
+        <form class='form-inline' style='margin: 8px 0 3px 0;'>
+          <label for='filename' class='control-label'>Save As:</label>
+          <input type='text' id='filename' class='input-xlarge'/>
+          <button id='save_btn' class='btn btn-mini btn-primary'>Save &amp; Close</button>
+          <button id='close_btn' class='btn btn-mini btn-primary'>Close Without Saving</button>
+        </form>
+      </div>
+      <div id='console' style="display: none;"></div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h2>OS Resources</h2>
+          <p>Contains support for a variety of UNIX-like operating system resources, including:<br>
+            <b>Thread Pool</b>: Emulates multiple concurrent threads, letting DoppioJVM support multithreaded JVM programs.<br>
+            <b>File System</b>: Maps files and directories to browser storage, cloud storage, zip files, and more! Uses our <a href="https://github.com/jvilk/browserfs">BrowserFS</a> library.<br>
+            <b>Network Sockets</b>: Maps outgoing TCP socket connections to WebSockets, which can connect to unmodified servers <a href="https://github.com/kanaka/websockify">wrapped in Websockify.</a><br>
+            <b>Unmanaged Heap</b>: Enables emulation of the controversial <tt>sun.misc.Unsafe</tt> API, which OpenJDK uses extensively internally.<br>
+            <b>Standard Streams</b>: Supports stdin/stdout/stderr, which can be hooked up to arbitrary UIs (such as a terminal).
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h2>Compatibility</h2>
+          <p>
+            DoppioJVM uses an unmodified version of the Java 8 OpenJDK Java Class Library, giving it compatibility with a wide range of existing software.
+          </p>
+          <p>
+            Try software out by uploading a JAR with the "Upload Files..." button, and running it in the terminal with the <tt>java</tt> command!
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Who</h2>
+          <p>
+            DoppioJVM is a research project from the <a href="https://plasma.cs.umass.edu/">PLASMA lab</a>
+            at the University of Massachusetts Amherst. DoppioJVM is primarily the work of <a href="https://jvilk.com/">John Vilk</a>,
+            with guidance from his advisor, <a href="https://emeryberger.com/">Emery Berger</a>. In addition, a number of
+            <a href="https://github.com/plasma-umass/doppio/graphs/contributors">other wonderful folks</a> have made valuable contributions
+            to DoppioJVM.
+          </P.
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>
+          Running demo version <a href="https://github.com/plasma-umass/doppio-demo/commit/36260bc97d4dfa88e28ced2da4829633f51a0a01
+">@36260b</a>, built 5&#x2F;25&#x2F;2016.
+        </p>
+      </div>
+    </footer>
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/mode-java.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.3/dropbox.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- BEGIN WebSockify LIBRARY -->
+    <script src="js/websockify/base64.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/websockify/util.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/websockify/websock.js" type="text/javascript" charset="utf-8"></script>
+    <!-- END WebSockify LIBRARY -->
+    <script src="js/browserfs.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/doppio.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>

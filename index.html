@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Browser-Tools - View, edit, convert, download files</title>
+	<meta name="description" content="Download, view, edit, convert music, video, image, docx, pptx, xlsx, PDF, mp3, jpeg, png, svg. Take notes, SSH, code in java, c, python, online in your browser">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/breeze-internet.png">
+	<link rel="stylesheet" href="style/main.css">
+	<!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+	    var u="https://piwik-jros.rhcloud.com/";
+	    _paq.push(['setTrackerUrl', u+'piwik.php']);
+	    _paq.push(['setSiteId', '1']);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+	<!-- End Piwik Code -->
+</head>
+<body>
+	<h1>Browser-Tools.net</h1>
+	<h3>The in-browser web tool set - <a href="about.html">know more about this site</a></h3>
+	<!-- youtube-dl-web -->
+	Download Video/Music
+	<form name="URLform" id="URLform">
+		<div class="input-group">
+			<img src="img/video.png" alt="video icon"><input type="text" name="url" placeholder="Webpage URL" size="40">
+			<button class="btn" type="button" onclick="processURLform(this.form)">Get media</button>
+		</div>
+	</form>
+
+	<div id="main-part">
+		<div id="videos-section">
+			<!-- Will be used when videos are processed -->
+		</div>
+	</div>
+	<br>
+		<div id="main">
+			<p>
+				<a href="apps/audioconverter/index.html" title="audioconverter"><img src="img/music-logo.png" alt="audioconverter.js icon" class="icon"><button class="btn">Convert Audio/Video to music</button></a>
+				<a href="docx-editor.html" title="DOCX editor"><img src="img/docx-file.png" alt="docx file icon" class="icon"><button class="btn">DOCX editor & PDF/PNG/JPEG export</button></a>
+				<a href="apps/PPTX2HTML/index.html" title="PPTX2HTML viewer"><img src="img/pptx-file.png" alt="PPTX icon" class="icon"><button class="btn">PPTX viewer</button></a>
+			</p>
+			<p>
+				<a href="apps/Wodo.TextEditor/localeditor.html" title="WebODF editor"><img src="img/odt-file.png" alt="ODT icon" class="icon"><button class="btn">ODT editor</button></a>
+				<a href="apps/js-xlsx/index.html" title="js-xlsx"><img src="img/xlsx-file.png" alt="XLSX icon" class="icon"><button class="btn">XLSX/ODS/XML... to CSV/JSON</button></a>
+				<a href="apps/draw/war/app.html" title="draw.io"><img src="apps/draw/war/images/logo.png" alt="draw.io logo" class="icon"><button class="btn">Diagram maker</button></a>
+			</p>
+			<p>
+				<a href="tesseract.html" title="ocrad.js"><img src="img/text-icon.png" alt="text icon" class="icon"><button class="btn">Convert image to text</button></a>
+				<a href="apps/laverna/index.html" title="Laverna"><img src="apps/laverna/images/icon/icon-96x96.png" alt="Laverna icon" class="icon"><button class="btn">Note taking</button></a>
+				<a href="apps/stackedit/landing.html" title="StackEdit"><img src="apps/stackedit/res/img/logo-highres.png" alt="StackEdit icon" class="icon"><button class="btn">Markdown editor</button></a>
+				<a href="apps/otterapps/www/index.html" title="Otter Feed Reader"><img src="apps/otterapps/www/img/feedicon.svg" alt="Otter Feed Reader icon" class="mini-icon"><button class="btn">RSS Reader</button></a>
+			</p>
+			<div id="ad">
+				<a href="mailto:info@browser-tools.net">Promote yourself, support us!</a>
+			</div>
+			<p>
+				<a href="apps/miniPaint/index.html" title="miniPaint"><img src="apps/miniPaint/img/favicon.png" alt="miniPaint icon" class="icon" style="position: absolute"><img src="apps/miniPaint/img/colorwheel.png" alt="colorwheel" class="mini-icon"><button class="btn">miniPaint</button></a>
+				<a href="apps/photo-editor/index.html" title="Photo Editor"><button class="btn">Photo Editor (cropper)</button></a>
+				<a href="apps/svgedit/editor/svg-editor.html" title="SVG-edit"><img src="apps/svgedit/editor/images/logo.png" alt="SVG-edit logo" class="icon"><button class="btn">SVG-edit (advanced)</button></a>
+				<a href="apps/Method-Draw/editor/index.html" title="Method Draw"><img src="apps/Method-Draw/editor/images/logo.png" alt="Method Draw logo" class="icon"><button class="btn">Method Draw (simple)</button></a>
+			</p>
+			<p>
+				<a href="apps/jor1k/demos/compile.html" title="jor1k" class="btn">
+					<img src="img/lang-logo/C-logo.png" alt="C logo" class="mini-icon">
+					<img src="img/lang-logo/python-logo.svg" alt="Python logo" class="mini-icon">
+					<img src="img/lang-logo/ruby-logo.svg" alt="Ruby logo" class="mini-icon">
+					<img src="img/lang-logo/php-logo.svg" alt="PHP logo" class="mini-icon">
+					<img src="img/lang-logo/perl-logo.png" alt="Perl logo" class="mini-icon">
+					<img src="img/lang-logo/lua-logo.svg" alt="Lua logo" class="mini-icon">
+					Compilers
+				</a>
+				jor1k
+				<a href="apps/jor1k/demos/main.html" title="jor1k"><button class="btn">Network (SSH...)<img src="img/tux.png" alt="Tux" class="mini-icon"><img src="img/terminal-icon.png" alt="Terminal icon" class="mini-icon"><img src="img/xorg-logo.svg" alt="X.Org logo" class="mini-icon"></button></a>
+			</p>
+			<p>
+				<a href="apps/kodeWeave/editor/index.html" title="kodeWeave playground"><img src="apps/kodeWeave/img/logo.svg" alt="kodeWeave logo" class="mini-icon">
+					<button class="btn">kodeWeave
+						<img src="img/lang-logo/javascript-logo.png" alt="JavaScript logo" class="mini-icon">
+						<img src="img/lang-logo/css3-html5-logo.svg" alt="CSS3 HTML5 logo" class="mini-icon">
+						<img src="img/markdown-icon.svg" alt="Markdown icon" class="mini-icon">
+					</button></a>
+				<a href="apps/monaco-editor/index.html" title="Monaco Editor"><img src="img/vscode.png" alt="Visual Studio Code icon" class="icon"><button class="btn">VS Code Editor</button></a>
+				<a href="apps/brackets/src/hosted.html" title="Bramble (Brackets)"><img src="img/brackets-icon.svg" alt="Brackets icon" class="icon"><button class="btn">Bramble (Brackets)</button></a>
+			</p>
+			<p>
+				<a href="apps/doppio/index.html" title="DoppioJVM"><button class="btn">DoppioJVM<img src="img/lang-logo/openjdk-logo.png" alt="OpenJDK logo" class="mini-icon"></button></a>
+				<a href="apps/JSIL/index.html" title="JSIL"><img src="apps/JSIL/images/jsil_256px.png" alt="JSIL logo" class="mini-icon"><button class="btn">JSIL<img src="img/lang-logo/dot-net-logo.png" alt="Dot NET logo" class="mini-icon"><img src="img/lang-logo/C-sharp-logo.svg" alt="C sharp logo" class="mini-icon"></button></a>
+				<a href="apps/JSCPP/index.html" title="JSCPP"><button class="btn">JSCPP<img src="img/lang-logo/C-plus-plus-logo.svg" alt="C plus plus logo" class="mini-icon"></button></a>
+				<a href="apps/sql/GUI/index.html" title="sql.js"><img src="img/SQLite-logo.png" alt="SQLite logo" class="mini-icon"><button class="btn">sql.js</button></a>
+			</p>
+			<p>
+				<a href="apps/zip/index.html" title="ZIP manager"><img src="img/zip-file.png" alt="ZIP file icon" class="icon"><button class="btn">ZIP manager</button></a>
+				<a href="apps/wild-web-midi/index.html" title="MIDI"><img src="img/midi-logo.png" alt="MIDI logo" class="icon"><button class="btn">Play and convert MIDI to wav</button></a>
+			</p>
+	</div>
+	<footer>
+		Copyright (c) 2016-2017 Julien Reichardt<br>
+		<a href="mailto:contact@jrei.ch">Email contact</a>
+		<a href="about.html" title="About" id="about">?</a>
+	</footer>
+
+	<script src="js/jquery.min.js"></script>
+
+	<!-- youtube-dl-web scripts-->
+	<script src="js/youtube-dl-web/VideoInfo.js"></script>
+	<script src="js/youtube-dl-web/InfoViewer.js"></script>
+	<script src="js/youtube-dl-web/processURL.js"></script>
+	<script src="js/youtube-dl-web/urlform.js"></script>
+</body>
+</html>

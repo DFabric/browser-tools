@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Browser-Tools - ZIP manager</title>
+	<meta name="description" content="Create and extract zip files online in your browser">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="../../img/zip-file.png">
+	<link rel="stylesheet" href="../../style/main.css">
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="https://piwik-jros.rhcloud.com/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', '1']);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+	<!-- End Piwik Code -->
+</head>
+<body>
+	<p>
+		<a id="home" href="../../index.html">Home</a>
+		Extract a zip file
+		<input class="btn" type="file" accept="application/zip" id="file-input">
+		<div id="file-list"></div>
+		<h3>Advanced ZIP file manager</h3>
+		<div class="directories">
+			<div id="tree" class="tree">
+			</div>
+		</div>
+		<div class="files">
+			<ul id="listing" class="listing"></ul>
+		</div>
+		<progress id="progress-export-zip" class="progress-export-zip"></progress>
+	</p>
+	<a href="../../about.html" alt="About" id="about">?</a>
+	<!-- zip.js -->
+	<script src="zip.js"></script>
+	<script src="zip-fs.js"></script>
+	<script src="zip-ext.js"></script>
+	<script src="mime-types.js"></script>
+	<script src="demo2.js"></script>
+	<script src="demo3.js"></script>
+</body>
+</html>

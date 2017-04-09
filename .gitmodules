@@ -1,0 +1,79 @@
+[submodule "Method-Draw"]
+  path = apps/Method-Draw
+  url = https://github.com/duopixel/Method-Draw
+  branch = master
+
+[submodule "PPTX2HTML"]
+  path = apps/PPTX2HTML
+  url = https://github.com/g21589/PPTX2HTML
+  branch = master
+
+[submodule "Wodo.TextEditor"]
+  path = apps/Wodo.TextEditor
+  url = https://github.com/kogmbh/Wodo.TextEditor_release
+  branch = master
+
+[submodule "Laverna"]
+  path = apps/laverna
+  url = https://github.com/Laverna/static-laverna
+  branch = gh-pages
+
+[submodule "js-xlsx"]
+  path = apps/js-xlsx
+  url = https://github.com/protobi/js-xlsx
+  branch = master
+
+[submodule "miniPaint"]
+  path = apps/miniPaint
+  url = https://github.com/viliusle/miniPaint
+  branch = master
+
+[submodule "Photo Editor"]
+  path = apps/photo-editor
+  url = https://github.com/fengyuanchen/photo-editor
+  branch = gh-pages
+
+[submodule "SVG-edit"]
+  path = apps/svgedit
+  url = https://github.com/SVG-Edit/svgedit
+  branch = master
+
+[submodule "Wild Web Midi"]
+  path = apps/wild-web-midi
+  url = https://github.com/zz85/wild-web-midi
+  branch = gh-pages
+
+[submodule "jor1k"]
+  path = apps/jor1k
+  url = https://github.com/s-macke/jor1k
+  branch = master
+
+[submodule "kodeWeave"]
+  path = apps/kodeWeave
+  url = https://github.com/mikethedj4/kodeWeave
+  branch = gh-pages
+
+[submodule "JSCPP"]
+  path = apps/JSCPP
+  url = https://github.com/felixhao28/JSCPP
+  branch = gh-pages
+
+[submodule "draw.io"]
+  path = apps/draw
+	url = https://github.com/jgraph/draw.io
+  branch = master
+
+[submodule "sql.js"]
+  path = apps/sql
+  url = https://github.com/kripken/sql.js
+  branch = gh-pages
+
+[submodule "brackets"]
+  path = apps/brackets
+  url = https://github.com/mozilla/brackets
+  branch = master
+
+[submodule "otterApp"]
+  path = apps/otterApp
+  url = https://github.com/mallorym/otterApp
+  branch = master

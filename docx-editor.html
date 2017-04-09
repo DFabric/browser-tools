@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Browser-Tools - DOCX viewer, convert to PDF/PNG/JPEG</title>
+	<meta name="description" content="View, edit, convert to PDF/PNG/JPEG images docx word files online in your browser">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/docx-file.png">
+	<link rel="stylesheet" href="style/main.css">
+	<link rel="stylesheet" href="style/trumbowyg/trumbowyg.min.css">
+	<link rel="stylesheet" href="style/trumbowyg/trumbowyg.colors.min.css">
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="https://piwik-jros.rhcloud.com/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', '1']);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+	<!-- End Piwik Code -->
+</head>
+<body>
+	<a id="home" href="index.html">Home</a>
+	<!-- docx2html -->
+	<input class="btn" type="file" onchange="generate(this)">
+	<button class="btn" data-clipboard-target="#content"><img class="mini-icon" src="img/clipboard-icon.svg">Copy to clipboard</button>
+	<button id="cmd" class="btn">generate PDF</button>
+	<input id="btn-Preview-Image" class="btn" type="button" value="Create image">
+	<span id="dl-image"></span>
+  <br>
+	<i>local images won't be exported</i>
+  <div id="previewImage"></div>
+	<div id="trumbowyg"><div id="content"></div></div>
+	<a href="about.html" alt="About" id="about">?</a>
+
+	<!-- docx2html scripts -->
+	<script src="js/docx2html.min.js"></script>
+
+	<script src="js/jquery.min.js"></script>
+
+	<!-- Trumbowyg editor -->
+	<script src="js/trumbowyg/trumbowyg.min.js"></script>
+	<script src="js/trumbowyg/trumbowyg.base64.min.js"></script>
+	<script src="js/trumbowyg/trumbowyg.colors.min.js"></script>
+	<script src="js/trumbowyg/trumbowyg.noembed.min.js"></script>
+	<script src="js/trumbowyg/trumbowyg.pasteimage.min.js"></script>
+	<script src="js/trumbowyg/trumbowyg.preformatted.min.js"></script>
+	<script src="js/trumbowyg/main.js"></script>
+
+	<!-- Generate the HTML from the docx file and then scale the the editor with the content -->
+  <script>
+	function generate(input){
+		require("docx2html")(input.files[0], {container:document.getElementById('content')}).then(function(converted){
+			jQuery("#trumbowyg").css({'height':(jQuery("#content").height()+'px')});
+		})
+	}
+	</script>
+
+	<!-- PDF exporter -->
+	<script src="js/jspdf.min.js"></script>
+	<script>
+	jQuery('#cmd').click(function () {
+		var pdf = new jsPDF();
+		pdf.fromHTML(jQuery('#content').html());
+		pdf.save('document.pdf');
+	});
+	</script>
+  <script>
+  jQuery(document).ready(function(){
+
+		var element = jQuery("#content"); // global variable
+	  var getCanvas; // global variable
+
+		jQuery("#btn-Preview-Image").on('click', function () {
+			 html2canvas(element, {
+				 onrendered: function (canvas) {
+					 jQuery("#previewImage").append(canvas);
+					 getCanvas = canvas;
+				 }
+			 });
+
+			 jQuery('<a>',{
+				 text: 'Download as PNG',
+				 id: 'btn-dl-png',
+				 class: 'btn',
+				 href: '#',
+			 }).appendTo('#dl-image');
+			 jQuery("#btn-dl-png").on('click', function () {
+				 var imgageData = getCanvas.toDataURL("image/png");
+				 // Now browser starts downloading it instead of just showing it
+				 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+				 jQuery("#btn-dl-png").attr("download", "image.png").attr("href", newData);
+			 });
+
+			 jQuery('<a>',{
+				 text: 'Download as JPEG',
+				 id: 'btn-dl-jpeg',
+				 class: 'btn',
+				 href: '#',
+			 }).appendTo('#dl-image');
+			 jQuery("#btn-dl-jpeg").on('click', function () {
+				 var imgageData = getCanvas.toDataURL("image/jpeg");
+				 // Now browser starts downloading it instead of just showing it
+				 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+				 jQuery("#btn-dl-jpeg").attr("download", "image.jpeg").attr("href", newData);
+			 });
+		 });
+	 });
+	</script>
+	<script src="js/clipboard.min.js"></script>
+	<script>new Clipboard('.btn')</script>
+</body>
+</html>

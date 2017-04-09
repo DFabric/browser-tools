@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg2169" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="109.85" width="110.42" version="1.0" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <defs id="defs2171">
+  <linearGradient id="linearGradient11307" y2="168.1" gradientUnits="userSpaceOnUse" y1="111.92" x2="147.78" x1="89.137">
+   <stop id="stop11303" stop-color="#ffe052" offset="0"/>
+   <stop id="stop11305" stop-color="#ffc331" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient9521" y2="131.85" gradientUnits="userSpaceOnUse" y1="77.07" x2="110.15" x1="55.549">
+   <stop id="stop9517" stop-color="#387eb8" offset="0"/>
+   <stop id="stop9519" stop-color="#366994" offset="1"/>
+  </linearGradient>
+ </defs>
+ <metadata id="metadata2174">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(-473.36 -251.72)">
+  <g id="g1894" transform="translate(428.42 184.26)">
+   <path id="path8615" style="color:#000000" d="m99.75 67.469c-28.032 0-26.281 12.156-26.281 12.156l0.031 12.594h26.75v3.781h-37.375s-17.937-2.034-17.937 26.25c-0.001 28.28 15.656 27.28 15.656 27.28h9.344v-13.12s-0.504-15.66 15.406-15.66h26.536s14.9 0.24 14.9-14.41v-24.215s2.26-14.656-27.03-14.656zm-14.75 8.469c2.661-0.001 4.812 2.151 4.812 4.812 0.001 2.661-2.151 4.812-4.812 4.812-2.661 0.001-4.812-2.151-4.812-4.812-0.001-2.661 2.151-4.812 4.812-4.812z" fill="url(#linearGradient9521)"/>
+   <path id="path8620" style="color:#000000" d="m100.55 177.31c28.03 0 26.28-12.15 26.28-12.15l-0.03-12.6h-26.75v-3.78h37.37s17.94 2.04 17.94-26.25c0-28.281-15.66-27.278-15.66-27.278h-9.34v13.128s0.5 15.65-15.41 15.65h-26.529s-14.906-0.24-14.906 14.41v24.22s-2.263 14.65 27.035 14.65zm14.75-8.46c-2.67 0-4.82-2.15-4.82-4.82 0-2.66 2.15-4.81 4.82-4.81 2.66 0 4.81 2.15 4.81 4.81 0 2.67-2.15 4.82-4.81 4.82z" fill="url(#linearGradient11307)"/>
+  </g>
+ </g>
+</svg>

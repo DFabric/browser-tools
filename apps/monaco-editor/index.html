@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Monaco Editor</title>
+	<meta name="description" content="Rich browser code editor with JavaScript, Python, Java, C, C++, C#, PHP and diff comparator online in your browser">
+	<link rel="shortcut icon" href="../../img/vscode.png">
+	<link rel="stylesheet" href="../../style/main.css">
+	<link rel="stylesheet" href="index/index.css">
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="https://piwik-jros.rhcloud.com/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', '1']);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<p><img src="https://piwik-jros.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt=""></p>
+	<!-- End Piwik Code -->
+</head>
+<body>
+	<a id="home" href="../../index.html">Home</a>
+	<section class="try">
+		<div class="editor row">
+			<div class="editor-block">
+				<div class="row">
+					<div class="row-element">
+						<label class="control-label">Language</label>
+						<select class="btn language-picker"></select>
+					</div>
+					<div class="row-element">
+						<label class="control-label">Theme</label>
+						<select class="btn theme-picker">
+							<option>Visual Studio</option>
+							<option>Visual Studio Dark</option>
+							<option>High Contrast Dark</option>
+						</select>
+					</div>
+					<button class="btn" data-clipboard-target=".lines-content"><img class="mini-icon" src="../../img/clipboard-icon.svg">Copy to clipboard</button>
+				</div>
+				<div class="editor-frame">
+					<div class="loading editor" style="display: none;">
+						<div class="progress progress-striped active">
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div id="editor"></div>
+				</div>
+			</div>
+		</div>
+			<hr>
+			<div class="editor row">
+				<div class="editor-block">
+					<div class="row">
+						<div>
+							<h2>Early diff comparator (todo)</h2>
+							<div class="checkbox">
+								<label class="control-label">
+									<input id="inline-diff-checkbox" type="checkbox" value=""> Inline diff
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="editor-frame">
+						<div class="loading diff-editor" style="display: none;">
+							<div class="progress progress-striped active">
+								<div class="bar"></div>
+							</div>
+						</div>
+						<div id="diff-editor"></div>
+					</div>
+				</div>
+			</div>
+	</section>
+
+	<footer class="container">
+		<hr>
+		<div>
+			<a href="#">Monaco Editor</a><br>
+			<a class="nav-item" href="https://github.com/Microsoft/monaco-editor">GitHub</a><br>
+			<a class="nav-item" href="https://www.npmjs.com/package/monaco-editor">Download</a><br>
+			<br>
+		</div>
+	</footer>
+	<script src="../../js/clipboard.min.js"></script>
+	<script>new Clipboard('.btn')</script>
+	<script src="../../js/jquery.min.js"></script>
+
+	<script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+	<script>require.config({ paths: { vs: 'node_modules/monaco-editor/min/vs' } });</script>
+	<script src="index/index.js"></script>
+</body>
+</html>
