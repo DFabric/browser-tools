@@ -10,8 +10,6 @@
  - [StackEdit](https://github.com/benweet/stackedit)
  - [Monaco Editor](https://github.com/Microsoft/monaco-editor)
  - [Bramble (Brackets)](https://github.com/mozilla/brackets)
- - [kodeWeave](https://github.com/mikethedj4/kodeWeave)
- - [JSIL](https://github.com/sq/JSIL)
  - [SVG-edit](https://github.com/SVG-Edit/svgedit)
  - [WebODF](http://www.webodf.org)
  - [Method Draw](https://github.com/duopixel/Method-Draw)
@@ -34,14 +32,7 @@
  - [Photo Editor](https://github.com/fengyuanchen/photo-editor)
  - [js-xlsx](https://github.com/protobi/js-xlsx)
   - [based on js-xlsx](https://github.com/SheetJS/js-xlsx)
- - [otterApp](https://github.com/mallorym/otterApp)
-    - [based on rssReader](https://github.com/huaruiwu/rssReader)
 
-## Use this site locally/offline
-
-You can download the site's content and use it directly by launching `index.html` on you browser. However browsers often block some local contents; the apps will not fully work if this protection isn't disabled or if the site isn't served with a local server.
-
-Therefore, you should need to set up a **local http server**:
 
 #### Download/Update Browser-Tools
 
@@ -54,7 +45,13 @@ To update from the upstream repository and its subprojects:
 
 `git pull && git submodule update --remote --merge`
 
-#### Caddy
+## Use this site locally/offline with an HTTP server
+
+You can download the site's content and use it directly by launching `index.html` on you browser. However browsers often block some local contents; the apps will not fully work if this protection isn't disabled or if the site isn't served with a local server.
+
+Therefore, you should need to set up a **local http server**:
+
+### Caddy
 
 You can use Caddy. ([download here](https://caddyserver.com/download))
 
@@ -64,7 +61,7 @@ Put the `caddy` binary file to the root of the site, and launch it:
 
 Your site is now available at `localhost:2015`
 
-#### http-server
+### http-server
 
 You can also use the `http-server` module from npm if you have [Node.js](https://nodejs.org) installed
 
@@ -78,9 +75,9 @@ Then run it:
 
 Your site is now available at `localhost:8080`
 
-#### Python http server
+### Python http server
 
-You can use the buit-in http extension of Python. Run one of this following command depending of you Python's version at the site's root.
+You can use the buit-in http extension of Python. Run one of this following commands depending of your Python's version at the site's root.
 
 If you have python 3 installed:
 
