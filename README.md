@@ -43,7 +43,7 @@ To clone the repository and its subrepositories recursively:
 
 To update from the upstream repository and its subprojects:
 
-`git pull && git submodule update --remote --merge`
+`git pull && git submodule update --remote --force`
 
 ## Use this site locally/offline with an HTTP server
 
