@@ -30,8 +30,7 @@
  - [JSCPP](https://github.com/felixhao28/JSCPP)
  - [Wild Web Midi](https://github.com/zz85/wild-web-midi)
  - [Photo Editor](https://github.com/fengyuanchen/photo-editor)
- - [js-xlsx](https://github.com/protobi/js-xlsx)
-  - [based on js-xlsx](https://github.com/SheetJS/js-xlsx)
+ - [js-xlsx](https://github.com/SheetJS/js-xlsx)
 
 
 #### Download/Update Browser-Tools

@@ -20,7 +20,7 @@
 
 [submodule "js-xlsx"]
   path = apps/js-xlsx
-  url = https://github.com/protobi/js-xlsx
+  url = https://github.com/SheetJS/js-xlsx 
   branch = master
 
 [submodule "miniPaint"]
