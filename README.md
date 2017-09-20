@@ -1,6 +1,6 @@
-# Browser-Tools
+# browser-tools
 
-## In-browser, offline standalone, statically servable web tool set.
+## In-browser, offline standalone, statically servable web tool set. [demo](https://dfabric.github.io/browser-tools/)
 
 ### A collection of web tools from number of different projects
 
@@ -33,7 +33,7 @@
  - [js-xlsx](https://github.com/SheetJS/js-xlsx)
 
 
-#### Download/Update Browser-Tools
+#### Download/Update browser-tools
 
 To clone the repository and its subrepositories recursively:
 
@@ -90,6 +90,6 @@ Your site is now available at `localhost:8000`
 
 ## License
 
-Browser-Tools
+browser-tools
 
 Copyright (c) 2016-2017 Julien Reichardt - [MIT License](http://opensource.org/licenses/MIT) (MIT)

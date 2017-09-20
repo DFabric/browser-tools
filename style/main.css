@@ -74,13 +74,6 @@ footer {
   margin-top: 4em;
 }
 
-#ad {
-  padding: 3em;
-  max-width: 100%
-	border-radius: .2em;
-  border: 1px solid #a9a9a9;
-}
-
 input[type=radio] {
   display: none;
 }
